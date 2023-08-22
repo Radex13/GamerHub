@@ -191,7 +191,7 @@ export const createInvitation = (userData, invitation) => {
 
 export const createCard = (card, edad) => {
     // Obtener el nombre del archivo de la imagen (ejemplo: profile-default.svg)
-  const imgFilename = card.img.split('/').pop();
+  const imgFilename = card.img
   // Comprobar si el archivo se encuentra en la carpeta "uploads"
   let imgSrc;
   if (imgFilename === 'profile-default.svg') {
