@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamerhub</title>
+    <link rel="stylesheet" href="/styles/output.css">
+    <link rel="icon" type="image/svg" href="/images/iconlogo.svg">
+    <link rel="stylesheet" href="../components/loader.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-zinc-600 scrollbar-thin scrollbar-track-slate-600 scrollbar-thumb-blue-800" style="z-index: -3; position: relative;">
+    <nav id="navbar" class="dark:bg-zinc-800 dark:backdrop-blur-sm fixed top-0 left-0 right-0 h-[5rem]"></nav>
+    <div id="main-container" class="pt-[5rem] flex min-h-screen justify-center items-center flex-row">
+
+        <div id="select-user" class="h-full flex justify-center w-1/5 bg-gray-700 text-white scrollbar-thin scrollbar-track-slate-600 scrollbar-thumb-blue-800 overflow-auto" style="height: calc(100vh - 5rem);">
+            <div id="select-content" class="flex flex-col justify-items-center items-start">
+                
+            </div>
+        </div>
+        <div id="chat-container" class="flex flex-col w-4/5 bg-zinc-700 text-white" style="height: calc(100vh - 5rem);">
+            
+            <div id="chat-container-default" class="flex h-full flex-col p-2 items-center justify-center">
+                <div class="flex flex-col justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-32 h-32">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                      </svg>       
+                    <span class="text-lg text-center">Empieza a chatear con tus compañeros gamers!</span>
+                </div>
+            </div>
+
+            <!-- <div id="chat-user-1234" class="h-full flex-col justify-between flex">
+                <div id="chat-bar" class="flex flex-col justify-center items-center p-2">
+                <span class="text-base">Radex14</span>
+                <span class="text-xs">Activo(a) hace 3 min</span>
+            </div>
+
+            <div id="chat" class="flex h-full w-full bg-zinc-600 p-4 flex-col gap-3 overflow-auto scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-zinc-600">
+                <div id="enter-messages" class="flex justify-start items-start">
+                    <div class="bg-blue-500 p-2 rounded-lg max-w-sm min-w-[0.5rem]">
+                        <p class="break-words">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem corrupti, atque laboriosam expedita, aspernatur ipsum dolores sit obcaecati, nesciunt neque earum a eligendi voluptatum magnam voluptas. Neque eligendi aliquid odit?</p>
+                    </div>
+                </div>
+                <div id="your-messages" class="flex justify-end items-start">
+                    <div class="bg-blue-500 p-2 rounded-lg max-w-sm min-w-[0.5rem]">
+                        <p class="break-words">Hola como estas?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chat-tooltip" class="p-2 flex justify-center items-center gap-3">
+                <input 
+                placeholder="Escribe aqui..."
+                type="text" 
+                class="bg-zinc-800 w-4/5 text-white p-2 rounded-md focus:outline-none focus:ring focus:border-indigo-700">
+                <button class="bg-indigo-700 text-white px-4 py-2 rounded-md hover:bg-indigo-800 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 pointer-events-none">
+                        <path class="pointer-events-none" stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                    </svg>                      
+                </button>
+            </div>
+            </div> -->
+        </div>
+    </div>
+    <script type="module" src="../components/nav.js"></script>
+    <script type="module" src="../components/chatting.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="index.js"></script>
+</body>
+</html>

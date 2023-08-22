@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" class="iconAbove">
+ <!---->
+ <defs>
+  <!---->
+ </defs>
+ <defs>
+  <!---->
+ </defs>
+ <defs>
+  <linearGradient gradientTransform="rotate(25)" id="9abf32d1-406d-4469-bad3-2980afa624fb" x1="0%" x2="100%" y1="0%" y2="0%">
+   <stop offset="0%" stop-color="#006678"/>
+   <stop offset="100%" stop-color="#4FA8FF"/>
+  </linearGradient>
+ </defs>
+ <!---->
+ <g class="layer">
+  <title>Layer 1</title>
+  <rect class="logo-background-square" fill="transparent" height="300px" id="svg_1" width="300px" x="0" y="0"/>
+  <g fill="url(#9abf32d1-406d-4469-bad3-2980afa624fb)" id="5de7cb1d-1cda-4cef-b1f6-53bb5d6030a6" transform="matrix(2.93993 0 0 3.28697 -41.0429 -8.56678)">
+   <path d="m98.4,33.4l0,-3.34l-6.7,0l0,-3.36l-13.4,0l0,10.06l-23.47,0l0,-10.06l-13.41,0l0,3.36l-6.7,0l0,3.34l-3.37,0l0,30.17l3.37,0l0,6.7l3.34,0l0,3.37l13.4,0l0,-10.07l-3.34,0l0,-16.77l3.34,0l0,-3.34l6.71,0l0,3.34l3.36,0l0,6.71l10.06,0l0,-6.71l3.34,0l0,-3.34l6.71,0l0,3.34l3.36,0l0,16.77l-3.36,0l0,10.07l13.4,0l0,-3.37l3.36,0l0,-6.7l3.35,0l0,-30.17l-3.35,0zm-50.28,6.7l0,3.36l-3.36,0l0,-3.36l-3.34,0l0,-3.34l3.34,0l0,-3.36l3.36,0l0,3.36l3.34,0l0,3.34l-3.34,0zm33.52,0l0,-3.34l3.36,0l0,-3.36l3.34,0l0,3.36l3.36,0l0,3.34l-3.36,0l0,3.36l-3.34,0l0,-3.36l-3.36,0z" id="svg_3"/>
+   <path d="m85,36.76l3.34,0l0,3.34l-3.34,0l0,-3.34zm-10.07,10.04l6.71,0l0,6.71l-6.71,0l0,-6.71zm-16.76,-20.1l16.76,0l0,6.7l-16.76,0l0,-6.7zm-6.71,20.1l6.71,0l0,6.71l-6.71,0l0,-6.71z" id="svg_4"/>
+  </g>
+ </g>
+</svg>

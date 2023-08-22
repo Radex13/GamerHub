@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerHub</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="icon" type="image/svg" href="/images/iconlogo.svg">
+    <link rel="stylesheet" href="/styles/output.css">
+</head>
+<body class="bg-zinc-900">
+    
+    <div class="flex h-screen max-w-7xl mx-auto justify-center items-center px-4 flex-col">
+        
+        <form id="form" class="flex flex-col bg-zinc-800 p-4 rounded-md gap-4">
+          <div id="config-form" class="flex-col bg-zinc-800 p-4 rounded-md gap-5">
+            <div class="flex flex-col gap-2">
+                <label for="username-input" class="font-bold text-zinc-100">
+                    Nombre de usuario <span class="text-red-500">*</span>
+                </label>
+                <div class="flex gap-4"> 
+                  <input
+                  type="text" 
+                  id="username-input" 
+                  name="username-input" 
+                  autocomplete="off" 
+                  placeholder="Noobmaster69"
+                  class="rounded-lg p-2 bg-zinc-700 w-full focus:outline-indigo-700 text-white"
+                  >
+                  <div id="verification-username-live" class="hidden justify-center items-center bg-zinc-700 py-2 px-4 rounded-lg text-white font-bold">
+                    <svg id="spinner-username" class="animate-spin h-5 w-5 hidden" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+
+                    <svg id="check-username" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-700 hidden">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+
+                    <svg id="nocheck-username" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-700 hidden">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-xs text-zinc-400">Tu nombre de usuario debe ser minimo de 5 caracteres y maximo 12 y que tenga letras y numeros.</p>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="date-input" class="font-bold text-zinc-100">
+                    Fecha de nacimiento <span class="text-red-500"></span>
+                </label>
+                <input
+                 type="date" 
+                 id="date-input" 
+                 name="date" 
+                 autocomplete="off" 
+                 class="rounded-lg p-2 bg-zinc-700 focus:outline-indigo-700 text-white"
+                 >
+                <p class="text-xs text-zinc-400">Pon tu edad verdadera.</p>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="language-input" class="font-bold text-zinc-100">
+                    Selecciona tu idioma <span class="text-red-500"></span>
+                </label>
+                <select
+                 type="text" 
+                 id="language-input" 
+                 name="language-input" 
+                 autocomplete="off"
+                 class="rounded-lg p-2 bg-zinc-700 focus:outline-indigo-700 text-white"
+                 >
+                 <option value="Selected" selected>Seleciona un idioma</option>
+                 <option value="English">English</option>
+                 <option value="Spanish">Español</option>
+                 </select>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="server-input" class="font-bold text-zinc-100">
+                    Selecciona tu servidor <span class="text-red-500"></span>
+                </label>
+                <select
+                 id="server-input" 
+                 name="server-input" 
+                 autocomplete="off"
+                 class="rounded-lg p-2 bg-zinc-700 focus:outline-indigo-700 text-white"
+                 >
+                 <option value="Selected" selected>Seleciona tu server</option>
+                 <option value="Europe">Europa</option>
+                 <option value="North America">Norte America</option>
+                 <option value="South America">Sur America</option>
+                 </select>
+            </div>
+            <div class="flex pt-2 items-center justify-center">
+              <button disabled id="next-btn-basic" class="bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Siguiente</button>
+          </div>
+        </div>
+        <div id="plataformas-juegos" class="flex flex-col bg-zinc-800 p-4 rounded-md gap-2" style="display: none;">
+          <!-- Contenido de la sección plataformas de juegos -->
+          <label class="font-bold text-zinc-100 text-xl">Selecciona tus plataformas de juegos</label>
+          <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+              <input
+                class="checkbox-input relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                type="checkbox"
+                value="Pc/Mac"
+                id="pc-checkbox" />
+              <label
+                class="font-bold text-zinc-100 inline-block pl-[0.15rem] hover:cursor-pointer"
+                for="pc-checkbox">
+                Pc/Mac
+              </label>
+            </div>
+            <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+              <input
+                class="checkbox-input relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                type="checkbox"
+                value="Xbox"
+                id="xbox-checkbox" />
+              <label
+                class="font-bold text-zinc-100 inline-block pl-[0.15rem] hover:cursor-pointer"
+                for="xbox-checkbox">
+                Xbox
+              </label>
+            </div>
+            <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+              <input
+                class="checkbox-input relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                type="checkbox"
+                value="Playstation"
+                id="playstation-checkbox" />
+              <label
+                class="font-bold text-zinc-100 inline-block pl-[0.15rem] hover:cursor-pointer"
+                for="playstation-checkbox">
+                Playstation
+              </label>
+            </div>
+            <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+              <input
+                class="checkbox-input relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                type="checkbox"
+                value="Mobile Games"
+                id="mobile-checkbox" />
+              <label
+                class="font-bold text-zinc-100 inline-block pl-[0.15rem] hover:cursor-pointer"
+                for="mobile-checkbox">
+                Mobile games
+              </label>
+            </div>
+            <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+              <input
+                class="checkbox-input relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                type="checkbox"
+                value="Nintendo Switch"
+                id="switch-checkbox" />
+              <label
+                class="font-bold text-zinc-100 inline-block pl-[0.15rem] hover:cursor-pointer"
+                for="switch-checkbox">
+                Nintendo Switch
+              </label>
+            </div>
+            <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+              <input
+                class="checkbox-input relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                type="checkbox"
+                value="Vr"
+                id="vr-checkbox" />
+              <label
+                class="font-bold text-zinc-100 inline-block pl-[0.15rem] hover:cursor-pointer"
+                for="vr-checkbox">
+                Vr
+              </label>
+            </div>
+            <div class="flex top-16 items-center justify-evenly">
+              <button id="atras-btn-plataformas" class="bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Atras</button>
+              <button id="next-btn-plataformas" class="bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Siguiente</button>
+          </div>
+      </div>
+
+      <div id="picture-form" class="hidden flex-col bg-zinc-800 p-4 rounded-md gap-4">
+        <label class="font-bold text-zinc-100 text-xl">Agrega una imagen para tu perfil</label>
+        <div id="picture-content">
+          <div id="picture-user" class="flex mr-auto ml-auto w-48 h-48 outline outline-4 outline-blue-600 rounded-full">
+            <img id="profile-picture" class="rounded-full w-48 h-48">
+            <img id="profile-default" class="rounded-full w-48 h-48 hidden" src="/images/profile-default.svg">
+          </div>
+          <input class="hidden" type="file" accept="image/*" id="profile-picture-input">
+          <div class="flex justify-center items-center p-4">
+            <button id="change-profile-picture-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-all">
+              Cambiar foto
+          </button>
+          </div>
+          
+        
+        <div class="flex top-16 items-center justify-evenly">
+          <button id="atras-btn-picture" class="bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Atras</button>
+          <button id="skip-btn-picture" class="bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Omitir</button>
+          <button id="next-btn-picture" class="hidden bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Siguiente</button>
+        </div>
+        </div>
+      </div>
+
+      <div id="description-form" class="hidden flex-col bg-zinc-800 p-4 rounded-md gap-4">
+        <label class="font-bold text-zinc-100 text-xl">Ingresa una descripción para tu perfil</label>
+        <textarea 
+        id="descripcionInput" 
+        class="h-96 rounded-lg p-2 resize-none bg-zinc-700 text-white text-center"
+        ></textarea>
+        
+        <div class="flex top-16 items-center justify-evenly">
+          <button id="atras-btn-description" class="bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Atras</button>
+          <button id="skip-btn-description" class="bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Omitir y guardar</button>
+          <button id="save-btn" class="hidden bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Guardar</button>
+      </div>
+      </div>
+        </form>
+
+        <!-- <div class="relative top-16">
+            <button id="next-btn" class="bg-indigo-800 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-900 text-center transition ease-in-out">Siguiente</button>
+        </div> -->
+    </div>
+<script type="module" src="index.js"></script>
+</body>
+</html>
