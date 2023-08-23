@@ -201,6 +201,12 @@ export const createCard = (card, edad) => {
     // Si la imagen está en la carpeta "uploads", cargar normalmente
     imgSrc = `/images/uploads/${imgFilename}`;
   }
+  let description
+  if (card.description === '') {
+    description = 'Aún no hay descripción'
+  } else {
+    description = card.description
+  }
     return `
     <div id="card-profile" class="flex flex-col bg-zinc-700 p-4 rounded-md gap-4 justify-center items-center">
 
@@ -231,7 +237,7 @@ export const createCard = (card, edad) => {
 
             <div id="card-description" class="bg-zinc-800 rounded-md p-2 w-4/5 min-h-[5rem] md:w-3/4 lg:w-2/3">
                 <p class="text-white font-normal break-words text-center text-sm md:text-lg">
-                    ${card.description}
+                    ${description}
                 </p>
             </div>
 
