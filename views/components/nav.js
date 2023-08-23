@@ -18,7 +18,7 @@ const createHomeNav = () => {
             <a href="/login/" class="text-zinc-700 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-all">Login</a>
           </div>
         </div>
-        <div class="bg-zinc-100 dark:bg-zinc-700 p-4 fixed h-screen top-20 w-0 bottom-0 -right-12 transition-all">
+        <div class="bg-[#2e2d2d] p-4 fixed h-screen top-20 w-0 bottom-0 -right-12 transition-all">
       <div class="gap-4 flex-col text-center hidden">
         <a href="/signup/" class="bg-indigo-700 dark:bg-indigo-300 text-white dark:text-zinc-700 uppercase font-bold px-4 py-2 rounded-lg hover:bg-indigo-800 dark:hover:bg-indigo-200 transition-all">Registro</a>
         <a href="/login/" class="text-zinc-700 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-all">Login</a>
@@ -46,7 +46,7 @@ const createSignupNav = () => {
           <a href="/login/" class="text-zinc-700 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-all">Login</a>
         </div>
       </div>
-      <div class="bg-zinc-100 dark:bg-zinc-700 p-4 fixed h-screen top-20 w-0 bottom-0 -right-12 transition-all">
+      <div class="bg-[#2e2d2d] p-4 fixed h-screen top-20 w-0 bottom-0 -right-12 transition-all">
     <div class="gap-4 flex-col text-center hidden">
       <a href="/login/" class="text-zinc-700 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-all">Login</a>
     </div>
@@ -73,7 +73,7 @@ const createLoginNav = () => {
           <a href="/signup/" class="text-zinc-700 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-all">Registro</a>
         </div>
       </div>
-      <div class="bg-zinc-100 dark:bg-zinc-700 p-4 fixed h-screen top-20 w-0 bottom-0 -right-12 transition-all">
+      <div class="bg-[#2e2d2d] p-4 fixed h-screen top-20 w-0 bottom-0 -right-12 transition-all">
     <div class="gap-4 flex-col text-center hidden">
       <a href="/signup/" class="text-zinc-700 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-all">Registro</a>
     </div>
@@ -112,7 +112,7 @@ const createLoginLobby = () => {
         </svg>
       </div>
       
-      <div class=" bg-zinc-700 dark:bg-zinc-700 p-4 fixed h-screen top-20 w-0 bottom-0 -right-12 transition-all">
+      <div class="bg-[#2e2d2d] p-4 fixed h-screen top-20 w-0 bottom-0 -right-12 transition-all">
     <div class="gap-4 flex-col text-center">
       <button id="profile-btn" class="text-zinc-100 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-600 dark:hover:bg-zinc-600 transition-all">Perfil</button>
       <button id="close-btn" class="text-zinc-100 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-600 dark:hover:bg-zinc-600 transition-all">Cerrar sesion</button>
@@ -140,7 +140,7 @@ const createProfileNav = () => {
         </svg>
 
       </div>
-      <div class=" bg-zinc-700 dark:bg-zinc-700 p-4 fixed z-50 h-screen top-20 w-0 bottom-0 -right-12  transition-all">
+      <div class="bg-[#2e2d2d] p-4 fixed z-50 h-screen top-20 w-0 bottom-0 -right-12  transition-all">
     <div class="gap-4 flex-col text-center z-50">
       <button id="gamers-btn" class="text-zinc-100 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-600 dark:hover:bg-zinc-600 transition-all">Gamers</button>
       <button id="close-btn" class="text-zinc-100 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-600 dark:hover:bg-zinc-600 transition-all">Cerrar sesion</button>
@@ -162,7 +162,7 @@ const createChatNav = () => {
         </svg>
 
       </div>
-      <div class=" bg-zinc-700 dark:bg-zinc-700 p-4 fixed z-50 h-screen top-20 w-0 bottom-0 -right-12  transition-all">
+      <div class="bg-[#2e2d2d] p-4 fixed z-50 h-screen top-20 w-0 bottom-0 -right-12  transition-all">
     <div class="gap-4 flex-col text-center z-50">
       <button id="gamers-btn" class="text-zinc-100 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-600 dark:hover:bg-zinc-600 transition-all">Gamers</button>
       <button id="profile-btn" class="text-zinc-100 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-600 dark:hover:bg-zinc-600 transition-all">Perfil</button>

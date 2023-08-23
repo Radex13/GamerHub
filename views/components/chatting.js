@@ -32,6 +32,17 @@ export function selectChat(socket) {
         for (const chatItem of chatsItems) {
             const addButton = document.getElementById(`${chatItem.id}`);
             addButton.addEventListener('click', async () => {
+                const chatContent = document.getElementById('chat-container')
+                chatContent.innerHTML = ''
+                const loadin = document.createElement('div');
+                loadin.setAttribute('class', 'flex h-full flex-col p-2 items-center justify-center');
+                loadin.id = 'chat-container-loading'
+                loadin.innerHTML = `
+                <div class="flex flex-col justify-center items-center">
+                    <div class="spinnerxl"></div>
+                </div>
+                `
+                chatContent.appendChild(loadin)
                 const pingOn = document.getElementById(`ping-${addButton.id}`)
                 pingOn.classList.remove('flex')
                 pingOn.classList.add('hidden')
@@ -51,7 +62,6 @@ export function selectChat(socket) {
                 const createTheMessages = await axios.patch(`/api/messages`, { idToUser });
                 const theMessages = createTheMessages.data;
                 const user = dataUser.data
-                const chatContent = document.getElementById('chat-container')
                 chatContent.innerHTML = ''
                 const chatUserItem = document.createElement('div');
                 chatUserItem.id = `chat-user-${userSend}`
