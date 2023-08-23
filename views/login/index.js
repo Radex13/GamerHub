@@ -33,7 +33,7 @@ form.addEventListener('submit', async e => {
   
     spinnerHidden();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     errorText.innerHTML = error.response.data.error
     spinnerHidden();
   }

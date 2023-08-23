@@ -215,9 +215,6 @@ export const createCard = (card, edad) => {
             </div>
     
             <div id="card-commontime" class="">
-                <p class="font-bold text-slate-300 text-xs text-center md:text-sm">
-                    tiempo de juego en comun: 100%
-                </p>
             </div>
 
             <div id="card-littleinfo" class="">

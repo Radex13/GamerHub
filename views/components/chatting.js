@@ -94,14 +94,19 @@ export function selectChat(socket) {
                 // Verifica si el mensaje es de "the messages" o "my messages" y aplica la clase correspondiente
                 if (theMessages.some(theMessage => theMessage.id === message.id)) {
                     messageItem.setAttribute('class', 'flex justify-start items-start mr-8');
+                    messageItem.innerHTML = `
+                    <div class="bg-slate-500 p-2 rounded-lg max-w-sm min-w-[0.5rem]">
+                        <p class="break-words">${message.text}</p>
+                    </div>
+                `;
                 } else if (myMessages.some(myMessage => myMessage.id === message.id)) {
                     messageItem.setAttribute('class', 'flex justify-end items-start ml-8');
-                }
-                messageItem.innerHTML = `
+                    messageItem.innerHTML = `
                         <div class="bg-blue-500 p-2 rounded-lg max-w-sm min-w-[0.5rem]">
                             <p class="break-words">${message.text}</p>
                         </div>
                     `
+                }
 
                 const contentOpenChat = document.getElementById('chat');
                 contentOpenChat.appendChild(messageItem);
@@ -172,7 +177,7 @@ export function messagesOnline(data) {
         theMessageItem.id = 'enter-messages';
         theMessageItem.setAttribute('class', 'flex justify-start items-start mr-8')
         theMessageItem.innerHTML = `
-            <div class="bg-blue-500 p-2 rounded-lg max-w-sm min-w-[0.5rem]">
+            <div class="bg-slate-500 p-2 rounded-lg max-w-sm min-w-[0.5rem]">
                 <p class="break-words">${data.message}</p>
             </div>
         `
