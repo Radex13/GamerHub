@@ -115,6 +115,13 @@ app.post('/api/upload', async (req, res) => {
             }
         }
 
+             // Crear la carpeta "uploads" si no existe
+             const uploadsFolderPath = path.join(__dirname, 'img', 'uploads');
+             if (!fs.existsSync(uploadsFolderPath)) {
+                 fs.mkdirSync(uploadsFolderPath);
+             }
+     
+
         // Procesar la imagen con Sharp y guardarla con un nombre de archivo único
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const extension = path.extname(file.name);
