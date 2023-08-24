@@ -241,21 +241,7 @@ export const createCard = (card, edad) => {
                 </p>
             </div>
 
-            <div id="card-favorite" class="bg-zinc-800 rounded-l-[5rem] rounded-r-3xl p-1 w-5/6 lg:w-1/2">
-                <div id="favorite-container" class="grid grid-cols-[auto,1fr] gap-4">
-                    <div id="img-game" class="flex items-center justify-center">
-                        <div class="flex items-center justify-center max-h-40 max-w-40">
-                            <img src="/images/game.webp" alt="" srcset="" class="object-contain rounded-full max-h-40 max-w-40">
-                        </div>
-
-                    </div>
-                    <div id="info-game" class="p-2 text-white text-center grid items-center justify-center">
-                        <p class="font-semibold md:text-base">Actualmente en:</p>
-                        <p class="font-bold md:text-lg">League of Legends</p>
-                        <p class="font-semibold text-xs">Hace: 30 minutos</p>
-                    </div>
-                </div>
-            </div>
+            <div></div>
 
             <div id="card-platforms" class="rounded-md">
 
