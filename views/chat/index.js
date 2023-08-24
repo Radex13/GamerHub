@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       chatItem.innerHTML = createChatProfile(userData);
       chatsContent.classList.remove('hidden');
       chatsContent.classList.add('flex');
-      chatsContent.appendChild(chatItem);
     }, 1000);
+    chatsContent.appendChild(chatItem);
     selectChat(socket);
   });
 
