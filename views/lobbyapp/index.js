@@ -5,9 +5,14 @@ const socket = io();
 document.addEventListener('DOMContentLoaded', async () => {
   const responseUserid = await axios.patch('/api/userslobby');
   socket.emit('setUserId', responseUserid.data);
-    const { data } = await axios.get('/api/userslobby', {
+  const responseInvitationForLobby = await axios.get('/api/invitations/chat');
+  const pendingInvitationsForLobby = responseInvitationForLobby.data.filter(invitation => invitation.status === 'accepted');
+
+    const { data } = await axios.put('/api/userslobby/users', {
+      pendingInvitationsForLobby,
       withCredentials: true
     });
+    console.log('que es data:', data);
     const cardcontain = document.getElementById('card-container');
     const loading = document.getElementById('spinnerload');
     let currentIndex = 0;

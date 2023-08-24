@@ -150,20 +150,25 @@ export const createInvitation = (userData, invitation) => {
         // Obtener el nombre del archivo de la imagen (ejemplo: profile-default.svg)
   const imgFilename = userData.img.split('/').pop();
   // Comprobar si el archivo se encuentra en la carpeta "uploads"
-  let imgSrc;
-  if (imgFilename === 'profile-default.svg') {
-    // Si la imagen es "profile-default.svg", cargar una imagen predeterminada
-    imgSrc = '/images/profile-default.svg'; // Ruta de la imagen predeterminada
-  } else {
-    // Si la imagen está en la carpeta "uploads", cargar normalmente
-    imgSrc = `/images/uploads/${imgFilename}`;
-  }
+  const imgSrc = `/images/uploads/${imgFilename}`
+  const defaultImgSrc = '/images/profile-default.svg';
+  
+  // Intentamos cargar la imagen
+  fetch(imgSrc).then(response => {
+      // Si la respuesta tiene un código 404, usamos la imagen predeterminada
+      if (response.ok === true) {
+          document.getElementById(`default-img-${userData.id}`).classList.add('hidden');
+          document.getElementById(`img-profile-${userData.id}`).innerHTML = `
+        <img class="h-20 min-h-10 w-20 min-w-10 rounded-full" src="${imgSrc}" alt="photo-profile-invite">
+      `;
+      }
+    })
     // console.log('this is a userData:', userData);
     return `
     <div class="flex-col flex justify-center w-full sm:flex-row sm:justify-evenly">
         <div class="flex justify-center px-2">
         <a href="" id="img-profile-${userData.id}" class="cursor-pointer">
-        <img class="h-20 min-h-10 w-20 min-w-10 rounded-full" src="${imgSrc}" alt="photo-profile-invite">
+            <img id="default-img-${userData.id}" class="h-20 min-h-10 w-20 min-w-10 rounded-full" src="${defaultImgSrc}" alt="photo-profile-invite">
         </a>
         </div>
         <div class="flex w-full flex-col">
@@ -341,6 +346,8 @@ export const createGame = (game, user, userGamesLength, myGamesLength) => {
         if (myGamesLength >= 5) {
             wegames.classList.add('hidden'); // Agregar tu clase aquí
             weGamesButton.textContent = `Tocar para mostrar: ${myGamesLength}`;
+        } else if (myGamesLength = 0) {
+            wegames.classList.add('hidden');
         } else {
             weGamesButton.classList.add('hidden');
             wegames.classList.remove('hidden');

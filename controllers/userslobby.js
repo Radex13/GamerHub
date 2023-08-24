@@ -2,35 +2,39 @@ const usersLobbyRouter = require('express').Router();
 const User = require('../models/user');
 const { PAGE_URL } = require('../config');
 
-usersLobbyRouter.get('/', async (request, response) => {
+usersLobbyRouter.put('/users', async (request, response) => {
   try {
-    
-    // esto es el ID del usuario que realiza la búsqueda
+    // Esto es el ID del usuario que realiza la búsqueda
     const requestingUserId = request.user.id;
-    // estos son todos los usuarios de la base de datos
-    const users = await User.find();
 
-    // Aplica el algoritmo de la base de datos
-    const filteredUsers = users.filter(user => {
-      
-      // Aplica tus condiciones de filtrado aquí
-      // Por ejemplo, si deseas filtrar usuarios mayores de 18 años:
-      // return user.dateOfBirth.getFullYear() <= new Date().getFullYear() - 18;
+    // las invitaciones del cuerpo de la solicitud
+    const invitations = request.body.pendingInvitationsForLobby;
 
-      // Esto es para para retornar todos los usuarios sin aplicar ningún filtro
-      // return true;
+    // los IDs de los usuarios involucrados en las invitaciones
+    const involvedUserIds = invitations.reduce((ids, invitation) => {
+      if (invitation.status === 'accepted') {
+        if (invitation.senderuser && !ids.includes(invitation.senderuser)) {
+          ids.push(invitation.senderuser);
+        }
+        if (invitation.recipientuser && !ids.includes(invitation.recipientuser)) {
+          ids.push(invitation.recipientuser);
+        }
+      }
+      return ids;
+    }, []);
 
-      // Compara el ID del usuario actual con el ID del usuario que realiza la búsqueda
-      return user._id.toString() !== requestingUserId;
-    });
+    //todos los usuarios de la base de datos, excluyendo los usuarios involucrados en invitaciones
+    const users = await User.find({ _id: { $nin: involvedUserIds, $ne: requestingUserId } });
 
+    users.sort(() => Math.random() - 0.5);
     // Devuelve la lista filtrada de usuarios en formato JSON
-    return response.status(200).json(filteredUsers);
+    return response.status(200).json(users);
   } catch (error) {
     console.log(error);
     response.status(500).json({ error: 'Error al obtener los usuarios.' });
   }
 });
+
 
 usersLobbyRouter.patch('/', async (request, response) => {
   try {
