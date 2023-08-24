@@ -190,17 +190,20 @@ export const createInvitation = (userData, invitation) => {
 }
 
 export const createCard = (card, edad) => {
-    // Obtener el nombre del archivo de la imagen (ejemplo: profile-default.svg)
-  const imgFilename = card.img
-  // Comprobar si el archivo se encuentra en la carpeta "uploads"
-  let imgSrc;
-  if (imgFilename === 'profile-default.svg') {
-    // Si la imagen es "profile-default.svg", cargar una imagen predeterminada
-    imgSrc = '/images/profile-default.svg'; // Ruta de la imagen predeterminada
-  } else {
-    // Si la imagen está en la carpeta "uploads", cargar normalmente
-    imgSrc = `/images/uploads/${imgFilename}`;
-  }
+    const imgFilename = card.img;
+    const imgSrc = `/images/uploads/${imgFilename}`;
+    const defaultImgSrc = '/images/profile-default.svg';
+    
+    // Intentamos cargar la imagen
+    fetch(imgSrc).then(response => {
+        // Si la respuesta tiene un código 404, usamos la imagen predeterminada
+        if (response.ok === true) {
+            document.getElementById('default-img').classList.add('hidden');
+            document.getElementById('card-img').innerHTML = `
+          <img class="rounded-full w-48 h-48 md:w-40 md:h-40" src="${imgSrc}" alt="photo-profile">
+        `;
+        }
+      })
   let description
   if (card.description === '') {
     description = 'Aún no hay descripción'
@@ -211,7 +214,7 @@ export const createCard = (card, edad) => {
     <div id="card-profile" class="flex flex-col bg-zinc-700 p-4 rounded-md gap-4 justify-center items-center">
 
                 <div id="card-img" class="flex w-48 h-48 justify-center items-center outline outline-4 outline-blue-600 rounded-full  md:w-40 md:h-40">
-                    <img class="rounded-full w-48 h-48 md:w-40 md:h-40" src="${imgSrc}" alt="photo-profile">
+                    <img id="default-img" class="rounded-full w-48 h-48 md:w-40 md:h-40" src="${defaultImgSrc}" alt="photo-profile">
                 </div>
 
             <div id="${card.username}">

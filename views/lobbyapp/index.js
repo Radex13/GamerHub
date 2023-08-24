@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       withCredentials: true
     });
     const cardcontain = document.getElementById('card-container');
+    const loading = document.getElementById('spinnerload');
     let currentIndex = 0;
     const usersPerPage = 1;
     let isLoading = false;
@@ -60,6 +61,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       cardItem.innerHTML = createCard(card, edad);
       cardIcon(cardItem, card);
         // console.log(resultsResponse);
+        // oculta el loading y muestra los usuarios
+        loading.classList.add('hidden')
+        cardcontain.classList.remove('hidden')
         cardcontain.appendChild(cardItem);
         const userId = data[currentIndex].id;
         const gamesProfileContent = document.getElementById(`favorite-games-${userId}`);

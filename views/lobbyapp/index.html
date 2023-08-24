@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GamerHub</title>
     <link rel="icon" type="image/svg" href="/images/iconlogo.svg">
+    <link rel="stylesheet" href="../components/loader.css">
     <link rel="stylesheet" href="/styles/output.css">
     <link rel="stylesheet" href="../components/separador.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -14,7 +15,11 @@
     <div id="notification"></div>
     <div id="main-container" class="pt-[5rem] flex min-h-screen justify-center items-center flex-row">
 
-        <div id="card-container" class="h-full w-10/12 bg-zinc-700 overflow-auto rounded-md scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-zinc-600">
+        <div id="spinnerload">
+            <div class="spinnerxl"></div>
+        </div>
+
+        <div id="card-container" class="h-full hidden w-10/12 bg-zinc-700 overflow-auto rounded-md scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-zinc-600">
         </div>
 
     </div>
