@@ -11,11 +11,13 @@ export const createChatProfile = (userData) => {
     imgSrc = `/images/uploads/${imgFilename}`;
   }
     return `
-    <span id="ping-${userData.id}" class="absolute hidden h-4 w-4">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-4 w-4 bg-sky-500"></span>
-    </span>
-    <img class="rounded-full h-auto pointer-events-none w-auto sm:h-28 sm:w-28 md:h-24 md:w-24" src="${imgSrc}" alt="">
+    <div class="outline outline-4 outline-blue-600 rounded-full">
+        <span id="ping-${userData.id}" class="absolute hidden h-4 w-4">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-sky-500"></span>
+        </span>
+        <img class="rounded-full h-auto pointer-events-none w-auto sm:h-28 sm:w-28 md:h-24 md:w-24" src="${imgSrc}" alt="">
+    </div>
     `
 }
 
