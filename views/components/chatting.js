@@ -1,27 +1,34 @@
 export const createChatProfile = (userData) => {
-            // Obtener el nombre del archivo de la imagen (ejemplo: profile-default.svg)
-  const imgFilename = userData.img.split('/').pop();
-  // Comprobar si el archivo se encuentra en la carpeta "uploads"
-  let imgSrc;
-  if (imgFilename === 'profile-default.svg') {
-    // Si la imagen es "profile-default.svg", cargar una imagen predeterminada
-    imgSrc = '/images/profile-default.svg'; // Ruta de la imagen predeterminada
-  } else {
-    // Si la imagen está en la carpeta "uploads", cargar normalmente
-    imgSrc = `/images/uploads/${imgFilename}`;
-  }
+  const imgFilename = userData.img;
+
+  const imgSrc = `/images/uploads/${imgFilename}`
+  const defaultImgSrc = '/images/profile-default.svg';
+  
+  // Intentamos cargar la imagen
+  fetch(imgSrc).then(response => {
+      // Si la respuesta tiene un código 404, usamos la imagen predeterminada
+      if (response.ok === true) {
+          document.getElementById(`default-img-${userData.username}`).classList.add('hidden');
+          document.getElementById(`img-content-${userData.id}`).innerHTML = `
+        <img class="rounded-full h-auto pointer-events-none w-auto sm:h-28 sm:w-28 md:h-24 md:w-24" src="${imgSrc}" alt="photo-profile">
+        `;
+      }
+    })
     return `
     <div class="outline outline-4 outline-blue-600 rounded-full">
         <span id="ping-${userData.id}" class="absolute hidden h-4 w-4">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-4 w-4 bg-sky-500"></span>
         </span>
-        <img class="rounded-full h-auto pointer-events-none w-auto sm:h-28 sm:w-28 md:h-24 md:w-24" src="${imgSrc}" alt="">
+        <div id="img-content-${userData.id}">
+            <img id="default-img-${userData.username}" class="rounded-full h-auto pointer-events-none w-auto sm:h-28 sm:w-28 md:h-24 md:w-24" src="${defaultImgSrc}" alt="photo-profile">
+        </div>    
     </div>
     `
 }
 
 let chatNow = [];
+let chatActive;
 
 export function selectChat(socket) {
     function scrollToBottom(chatContainer) {
@@ -68,11 +75,48 @@ export function selectChat(socket) {
                 const chatUserItem = document.createElement('div');
                 chatUserItem.id = `chat-user-${userSend}`
 
+                if (user.onlineNow === true) {
+                    chatActive = ''
+                    chatActive = 'Activ@ ahora'
+                } else {
+                    function formatTimeDifference(lastActive) {
+                        const currentDate = new Date();
+                        const lastActiveDate = new Date(lastActive);
+                        const differenceInMilliseconds = currentDate - lastActiveDate;
+                      
+                        const millisecondsPerSecond = 1000;
+                        const millisecondsPerMinute = 60 * millisecondsPerSecond;
+                        const millisecondsPerHour = 60 * millisecondsPerMinute;
+                        const millisecondsPerDay = 24 * millisecondsPerHour;
+                        const millisecondsPerMonth = 30 * millisecondsPerDay;
+                      
+                        if (differenceInMilliseconds < millisecondsPerHour) {
+                          if (differenceInMilliseconds < millisecondsPerMinute) {
+                            const seconds = Math.floor(differenceInMilliseconds / millisecondsPerSecond);
+                            return `Activ@ hace: ${seconds} ${seconds === 1 ? 'segundo' : 'segundos'}`;
+                          } else {
+                            const minutes = Math.floor(differenceInMilliseconds / millisecondsPerMinute);
+                            return `Activ@ hace: ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
+                          }
+                        } else if (differenceInMilliseconds < millisecondsPerDay) {
+                          const days = Math.floor(differenceInMilliseconds / millisecondsPerHour);
+                          return `última vez activ@: hace ${days} ${days === 1 ? 'día' : 'días'}`;
+                        } else if (differenceInMilliseconds < millisecondsPerMonth) {
+                          const months = Math.floor(differenceInMilliseconds / millisecondsPerDay);
+                          return `última vez activ@: hace ${months} ${months === 1 ? 'mes' : 'meses'}`;
+                        } else {
+                          return `última vez activ@: hace más de 1 mes`;
+                        }
+                      }
+                      const lastActive = user.lastOnline;
+                      chatActive = ''
+                      chatActive = formatTimeDifference(lastActive);
+                }
                 chatUserItem.setAttribute('class', 'h-full flex-col justify-between flex');
                 chatUserItem.innerHTML = `
                 <div id="chat-bar" class="flex flex-col justify-center items-center p-2">
                 <span class="text-base">${user.username}</span>
-                <span class="text-xs">Activo(a) hace 3 min</span>
+                <span class="text-xs">${chatActive}</span>
                 </div>
 
                 <div id="chat" class="flex h-full w-full bg-zinc-600 p-4 flex-col gap-3 overflow-auto scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-zinc-600">

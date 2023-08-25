@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema({
   email: String,
   passwordHash: String,
   dateOfBirth: Date,
+  lastOnline: String,
+  onlineNow: {
+    type: Boolean,
+    default: false
+  },
   verified: {
     type: Boolean,
     default: false

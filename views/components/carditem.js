@@ -216,6 +216,40 @@ export const createCard = (card, edad) => {
   } else {
     description = card.description
   }
+
+  function formatTimeDifference(lastActive) {
+    const currentDate = new Date();
+    const lastActiveDate = new Date(lastActive);
+    const differenceInMilliseconds = currentDate - lastActiveDate;
+  
+    const millisecondsPerSecond = 1000;
+    const millisecondsPerMinute = 60 * millisecondsPerSecond;
+    const millisecondsPerHour = 60 * millisecondsPerMinute;
+    const millisecondsPerDay = 24 * millisecondsPerHour;
+    const millisecondsPerMonth = 30 * millisecondsPerDay;
+  
+    if (differenceInMilliseconds < millisecondsPerHour) {
+      if (differenceInMilliseconds < millisecondsPerMinute) {
+        const seconds = Math.floor(differenceInMilliseconds / millisecondsPerSecond);
+        return `última vez activ@: hace ${seconds} ${seconds === 1 ? 'segundo' : 'segundos'}`;
+      } else {
+        const minutes = Math.floor(differenceInMilliseconds / millisecondsPerMinute);
+        return `última vez activ@: hace ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
+      }
+    } else if (differenceInMilliseconds < millisecondsPerDay) {
+      const days = Math.floor(differenceInMilliseconds / millisecondsPerHour);
+      return `última vez activ@: hace ${days} ${days === 1 ? 'día' : 'días'}`;
+    } else if (differenceInMilliseconds < millisecondsPerMonth) {
+      const months = Math.floor(differenceInMilliseconds / millisecondsPerDay);
+      return `última vez activ@: hace ${months} ${months === 1 ? 'mes' : 'meses'}`;
+    } else {
+      return `última vez activ@: hace más de 1 mes`;
+    }
+  }
+  
+  const lastActive = card.lastOnline;
+  const formattedTimeDifference = formatTimeDifference(lastActive);
+
     return `
     <div id="card-profile" class="flex flex-col bg-zinc-700 p-4 rounded-md gap-4 justify-center items-center">
 
@@ -292,7 +326,7 @@ export const createCard = (card, edad) => {
             </div>
 
             <div id="card-activity">
-                <p class="text-center text-slate-300 font-semibold">última vez activ@: hace 21 horas</p>
+                <p class="text-center text-slate-300 font-semibold">${formattedTimeDifference}</p>
             </div>
 
             <div id="invite">

@@ -5,6 +5,10 @@ const socket = io();
 document.addEventListener('DOMContentLoaded', async () => {
   const responseUserid = await axios.patch('/api/userslobby');
   socket.emit('setUserId', responseUserid.data);
+  socket.on('userOnline', (currentDate) => {
+    const online = true
+    axios.patch(`/api/userprofile/`, { currentDate, online })
+  })
   const responseInvitationForLobby = await axios.get('/api/invitations/chat');
   const pendingInvitationsForLobby = responseInvitationForLobby.data.filter(invitation => invitation.status === 'accepted');
 
@@ -12,7 +16,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       pendingInvitationsForLobby,
       withCredentials: true
     });
-    console.log('que es data:', data);
     const cardcontain = document.getElementById('card-container');
     const loading = document.getElementById('spinnerload');
     let currentIndex = 0;

@@ -29,7 +29,7 @@ userProfileRouter.get('/', async (request, response) => {
 userProfileRouter.patch('/', async (request, response) => {
   const user = request.user;
 
-  const { username, email, description, platforms } = request.body;
+  const { username, email, description, platforms, currentDate, online } = request.body;
 
   if (username) {
     await User.findByIdAndUpdate(user._id, { username });
@@ -46,6 +46,11 @@ userProfileRouter.patch('/', async (request, response) => {
   if (platforms) {
     await User.findByIdAndUpdate(user._id, { platforms });
   }
+
+  if (currentDate && online) {
+    await User.findByIdAndUpdate(user._id, { lastOnline: currentDate, onlineNow: online });
+  }
+
 
   return response.sendStatus(200);
 });

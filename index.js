@@ -1,9 +1,10 @@
 const app = require('./app');
 const http = require('http');
-
+const User = require('./models/user');
 const server = http.createServer(app);
 const SocketIO = require('socket.io')
 const io = SocketIO(server);
+
 // websockets
 // Servidor
 const userSocketMap = new Map(); // Cambio a usar un Map en lugar de un objeto
@@ -12,14 +13,31 @@ io.on('connection', (socket) => {
   console.log('Nueva conexión:', socket.id);
   
   socket.on('setUserId', (userId) => {
-    userSocketMap.set(socket.id, userId); // Asociar socket.id con usuarioId
-    // console.log('Mapa actualizado:', userSocketMap);
+    userSocketMap.set(socket.id, userId);
+    const currentDate = new Date();
+    // console.log('LA FECHA DE inicio:', currentDate);
+    socket.emit('userOnline', currentDate)
   });
 
-  socket.on('disconnect', () => {
-    userSocketMap.delete(socket.id); // Eliminar la asociación al desconectar
-    console.log('Desconexion:', socket.id);
-    // console.log('Mapa actualizado:', userSocketMap);
+  socket.on('disconnect', async () => {
+    const disconnectedUserId = userSocketMap.get(socket.id); // Obtener userId asociado a socket.id
+    // console.log('Id usuario desconectado:', disconnectedUserId);
+    if (disconnectedUserId) {
+      userSocketMap.delete(socket.id); // Eliminar la asociación al desconectar
+      console.log('Desconexión:', socket.id);
+      const currentDate = new Date();
+      const utcDateString = currentDate.toISOString();
+      // console.log('LA FECHA DE CIERRE ES:', utcDateString);
+      try {
+        const user = await User.findByIdAndUpdate(disconnectedUserId, {
+            lastOnline: utcDateString,
+            onlineNow: false
+          });
+          // console.log('user me da',user);
+      } catch (error) {
+        console.error('Error al guardar la información de desconexión:', error);
+      }
+    }
   });
   
   socket.on('invitarUsuario', (data) => {
