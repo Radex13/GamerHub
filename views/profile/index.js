@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     // console.log(results);
     const loaderContainer = document.getElementById("loader-container");
     const cuentaContent = document.getElementById("cuenta-content");
-  
+
     // Mostrar el loader al inicio (opcional, si deseas mostrarlo al principio)
     loaderContainer.classList.add("hide-loader");
   
@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", async() => {
       // Mostrar el loader antes de cargar los datos
       loaderContainer.classList.remove("hide-loader");
       document.getElementById("profile-container").classList.add("loading");
-  
+      cuentaContent.classList.remove('hidden');  
+      cuentaContent.classList.add('flex')  
     const { data } = await axios.get('/api/userprofile', {
         withCredentials: true
     });
