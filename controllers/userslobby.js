@@ -24,9 +24,11 @@ usersLobbyRouter.put('/users', async (request, response) => {
     }, []);
 
     //todos los usuarios de la base de datos, excluyendo los usuarios involucrados en invitaciones
-    const users = await User.find({ _id: { $nin: involvedUserIds, $ne: requestingUserId } });
+    const users = await User.find({ _id: { $nin: involvedUserIds, $ne: requestingUserId },
+      newuser: false // Filtrar usuarios con newuser = false
+    });
 
-    users.sort(() => Math.random() - 0.5);
+    users.sort(() => Math.random() * 2 - 1);
     // Devuelve la lista filtrada de usuarios en formato JSON
     return response.status(200).json(users);
   } catch (error) {

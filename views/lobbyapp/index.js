@@ -111,15 +111,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     btnInvitation.addEventListener('click', async () => {
       const numericPart = btnInvitation.id.slice(11); // Elimina los primeros 9 caracteres ("invite-btn-")
+      const btnInfo = document.getElementById(`info-btn-${numericPart}`)
+      const spinner = btnInfo.children[0]
+      const text = btnInfo.children[1]
+      text.innerHTML = ''
+      spinner.classList.remove('hidden')
       const createResponse = await axios.post('/api/invitations', { 
         status: 'pending',
         recipientuser: numericPart,
     });
-      const dataResponse = createResponse.data 
+    const dataResponse = createResponse.data 
     const responseUser = await axios.patch('/api/userslobby');
     // console.log('mi user:', responseUser.data);
     // console.log('enviado a:', numericPart);
     socket.emit('invitarUsuario', {user: numericPart, userEmit: responseUser.data, idInvitation: dataResponse.id});
+    spinner.classList.add('hidden')
+    text.innerHTML = 'Invitado ✔'
     });
         // Escuchar eventos de invitación
     socket.on('nuevaInvitacion', async (data) => {

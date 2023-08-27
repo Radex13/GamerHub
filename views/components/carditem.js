@@ -317,9 +317,7 @@ export const createCard = (card, edad) => {
                     Pregunta sobre los juegos que tengo!
                     </button>
 
-                    <div id="favorite-games-${card.id}" class="flex flex-wrap justify-center items-center gap-2 text-slate-200 text-center">
-
-                        
+                    <div id="favorite-games-${card.id}" class="flex flex-wrap justify-center items-center gap-2 text-slate-200 text-center">               
                     </div>
                 </div>
 
@@ -330,8 +328,11 @@ export const createCard = (card, edad) => {
             </div>
 
             <div id="invite">
-                <button id="invite-btn-${card.id}" class="bg-indigo-800 py-2 px-4 rounded-lg font-bold text-white hover:bg-indigo-900 text-center transition ease-in-out">
-                    Invitar
+                <button id="invite-btn-${card.id}" class="bg-indigo-800 py-2 px-4 min-w-[5rem] min-h-[2.5rem]  rounded-lg font-bold text-white hover:bg-indigo-900 text-center transition ease-in-out">
+                    <div id="info-btn-${card.id}" class="flex justify-center">
+                        <div class="spinner-sm pointer-events-none hidden"></div>
+                        <span class="pointer-events-none">Invitar</span>
+                    </div>
                 </button>
             </div>
 
