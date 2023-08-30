@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const userData = user.data;
     const chatItem = document.createElement('div');
     chatItem.id = userSend;
-    chatItem.setAttribute('class', 'p-2 cursor-pointer chat-item');
+    chatItem.setAttribute('class', 'p-2 cursor-pointer chat-item gap-4 w-full justify-start sm:justify-center flex flex-row md:justify-start rounded-md hover:bg-gray-600 ');
     chatLoading.classList.add('fadeInn');
     setTimeout(() => {
       chatLoading.classList.remove('flex');
