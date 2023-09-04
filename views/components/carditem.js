@@ -237,13 +237,16 @@ export const createCard = (card, edad) => {
         return `última vez activ@: hace ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
       }
     } else if (differenceInMilliseconds < millisecondsPerDay) {
-      const days = Math.floor(differenceInMilliseconds / millisecondsPerHour);
+      const hours = Math.floor(differenceInMilliseconds / millisecondsPerHour);
+      return `última vez activ@: hace ${hours} ${hours === 1 ? 'hora' : 'horas'}`;
+    } else if (differenceInMilliseconds < millisecondsPerMonth) {
+      const days = Math.floor(differenceInMilliseconds / millisecondsPerDay);
       return `última vez activ@: hace ${days} ${days === 1 ? 'día' : 'días'}`;
     } else if (differenceInMilliseconds < millisecondsPerMonth) {
-      const months = Math.floor(differenceInMilliseconds / millisecondsPerDay);
-      return `última vez activ@: hace ${months} ${months === 1 ? 'mes' : 'meses'}`;
+        const months = Math.floor(differenceInMilliseconds / millisecondsPerMonth);
+        return `última vez activ@: hace ${months} ${months === 1 ? 'mes' : 'meses'}`;
     } else {
-      return `última vez activ@: hace más de 1 mes`;
+      return `última vez activ@: hace más de 1 año`;
     }
   }
   

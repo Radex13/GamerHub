@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   socket.on('newMessage', (data) => {
-    console.log(data);
     messagesOnline(data)
     });
 });
