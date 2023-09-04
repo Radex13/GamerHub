@@ -227,29 +227,27 @@ export const createCard = (card, edad) => {
     const millisecondsPerHour = 60 * millisecondsPerMinute;
     const millisecondsPerDay = 24 * millisecondsPerHour;
     const millisecondsPerMonth = 30 * millisecondsPerDay;
+    const millisecondsPerYear = 365 * millisecondsPerDay;
   
-    if (differenceInMilliseconds < millisecondsPerHour) {
-      if (differenceInMilliseconds < millisecondsPerMinute) {
-        const seconds = Math.floor(differenceInMilliseconds / millisecondsPerSecond);
-        return `última vez activ@: hace ${seconds} ${seconds === 1 ? 'segundo' : 'segundos'}`;
-      } else {
-        const minutes = Math.floor(differenceInMilliseconds / millisecondsPerMinute);
-        return `última vez activ@: hace ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
-      }
+    if (differenceInMilliseconds < millisecondsPerMinute) {
+      const seconds = Math.floor(differenceInMilliseconds / millisecondsPerSecond);
+      return `última vez activ@: hace ${seconds} ${seconds === 1 ? 'segundo' : 'segundos'}`;
+    } else if (differenceInMilliseconds < millisecondsPerHour) {
+      const minutes = Math.floor(differenceInMilliseconds / millisecondsPerMinute);
+      return `última vez activ@: hace ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
     } else if (differenceInMilliseconds < millisecondsPerDay) {
       const hours = Math.floor(differenceInMilliseconds / millisecondsPerHour);
       return `última vez activ@: hace ${hours} ${hours === 1 ? 'hora' : 'horas'}`;
     } else if (differenceInMilliseconds < millisecondsPerMonth) {
       const days = Math.floor(differenceInMilliseconds / millisecondsPerDay);
       return `última vez activ@: hace ${days} ${days === 1 ? 'día' : 'días'}`;
-    } else if (differenceInMilliseconds < millisecondsPerMonth) {
-        const months = Math.floor(differenceInMilliseconds / millisecondsPerMonth);
-        return `última vez activ@: hace ${months} ${months === 1 ? 'mes' : 'meses'}`;
+    } else if (differenceInMilliseconds < millisecondsPerYear) {
+      const months = Math.floor(differenceInMilliseconds / millisecondsPerMonth);
+      return `última vez activ@: hace ${months} ${months === 1 ? 'mes' : 'meses'}`;
     } else {
       return `última vez activ@: hace más de 1 año`;
     }
-  }
-  
+  }  
   const lastActive = card.lastOnline;
   const formattedTimeDifference = formatTimeDifference(lastActive);
 
