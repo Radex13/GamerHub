@@ -173,6 +173,28 @@ const createChatNav = () => {
   `
 }
 
+const createNavInvitation = () => {
+  navbar.innerHTML = `
+  <div class="flex justify-between items-center h-20 px-4 max-w-7xl mx-auto">
+  <img src="/images/GamerhubWhite.svg" alt="GamerHub" class="h-6">
+
+      <div class="flex gap-4">
+        <button></button>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer text-zinc-50">
+          <path class="pointer-events-none" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+
+      </div>
+      <div class="bg-[#2e2d2d] p-4 fixed z-50 h-screen top-20 w-0 bottom-0 -right-12  transition-all">
+    <div class="gap-4 flex-col text-center z-50">
+      <button id="gamers-btn" class="text-zinc-100 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-600 dark:hover:bg-zinc-600 transition-all">Gamers</button>
+      <button id="profile-btn" class="text-zinc-100 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-600 dark:hover:bg-zinc-600 transition-all">Perfil</button>
+      <button id="close-btn" class="text-zinc-100 dark:text-zinc-100 uppercase font-bold px-4 py-2 rounded-lg hover:bg-zinc-600 dark:hover:bg-zinc-600 transition-all">Cerrar sesion</button>
+    </div>
+  </div>
+    </div>
+  `
+}
 
 if (window.location.pathname === '/') {
   createHomeNav();
@@ -186,6 +208,8 @@ if (window.location.pathname === '/') {
   createProfileNav();
 } else if (window.location.pathname === '/chat/') {
   createChatNav(); 
+} else if (window.location.pathname.startsWith('/user/')) {
+  createNavInvitation(); 
 }
 if (window.location.pathname === '/lobby/') {
   const navBtn = navbar.children[0].children[2];

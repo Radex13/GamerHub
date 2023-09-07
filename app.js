@@ -47,6 +47,7 @@ app.use('/profile', express.static(path.resolve('views', 'profile')));
 app.use('/chat', express.static(path.resolve('views', 'chat')));
 app.use('/components', express.static(path.resolve('views', 'components')));
 app.use('/images', express.static(path.resolve('img')));
+app.use('/user/:id/:invitation', express.static(path.resolve('views', 'user')));
 app.use('/verify/:id/:token', express.static(path.resolve('views', 'verify')));
 
 app.use(fileUpload());

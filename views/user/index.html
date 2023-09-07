@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/components/loader.css">
+    <link rel="stylesheet" href="/styles/output.css">
+    <title>GamerHub</title>
+    <link rel="icon" type="image/svg" href="/images/iconlogo.svg"> 
+</head>
+<body class="bg-zinc-700 scrollbar-thin scrollbar-track-slate-600 scrollbar-thumb-blue-800">
+    <nav id="navbar" class=" dark:bg-zinc-800 dark:backdrop-blur-sm fixed top-0 left-0 right-0 h-[5rem]"></nav>
+    <div id="notification"></div>
+    <div id="main-container" class="pt-[5rem] flex min-h-screen justify-center items-center flex-row">
+        <div id="spinner">
+            <div class="loader"></div>
+        </div>
+        <div id="card-container" class="h-full w10/12 bg bg-zinc-700 w-auto rounded-md"></div>
+    </div>
+    <script type="module" src="/components/nav.js"></script>
+    <script type="module" src="index.js"></script>
+</body>
+</html>

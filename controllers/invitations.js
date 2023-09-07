@@ -1,5 +1,6 @@
 const invitationsRouter = require('express').Router();
 const Invitation = require('../models/invitation');
+const User = require('../models/user');
 
 invitationsRouter.post('/', async (request, response) => {
     const user = request.user
@@ -51,7 +52,6 @@ invitationsRouter.get('/chat', async (request, response) => {
   }
 });
 
-
 invitationsRouter.patch('/', async (request, response) => {
   const user = request.user
   const { idInvitation } = request.body; 
@@ -68,6 +68,28 @@ invitationsRouter.patch('/declined', async (request, response) => {
   // const invitations = await Invitation.find({ _id: idInvitation });
   const invitations = await Invitation.findByIdAndUpdate(idInvitationDelete, { status });
   return response.status(200).json(invitations);
+});
+
+invitationsRouter.patch('/:userId/:invitationId', async (request, response) => {
+  // const invitation = request.params.invitationId;
+  const userId = request.user;
+  // console.log('el que solicita es:', userId._id);
+
+  const user = request.params.userId;
+  const invitation = request.params.invitationId;
+
+  try {
+    const invitationExist = await Invitation.findById(invitation)
+    if (invitationExist.status !== 'pending') {
+      return response.status(400).json({ error: 'La invitacion no esta pendiente.' });
+    }
+    if (invitationExist) {
+      const userExist = await User.findById(user);
+      return response.status(200).json(userExist);
+    }
+  } catch (error) {
+    return response.status(400).json({ error: 'La invitacion no existe.' });
+  }
 });
 
 module.exports = invitationsRouter;

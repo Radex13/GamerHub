@@ -167,7 +167,7 @@ export const createInvitation = (userData, invitation) => {
     return `
     <div class="flex-col flex justify-center w-full sm:flex-row sm:justify-evenly">
         <div class="flex justify-center px-2">
-        <a href="" id="img-profile-${userData.id}" class="cursor-pointer">
+        <a href="/user/${userData.id}/${invitation}" id="img-profile-${userData.id}" class="cursor-pointer">
             <img id="default-img-${userData.id}" class="h-20 min-h-10 w-20 min-w-10 rounded-full" src="${defaultImgSrc}" alt="photo-profile-invite">
         </a>
         </div>
@@ -375,6 +375,7 @@ export const cardIcon = (card, user) => {
 export const createGame = (game, user, userGamesLength, myGamesLength) => {
     const wegames = document.getElementById(`wegames-${user}`);
     const weGamesButton = wegames.parentElement.children[0]
+    console.log();
     const favoritegames = document.getElementById(`favorite-games-${user}`);
     const favoriteGamesButton = favoritegames.parentElement.children[0]
 
@@ -385,7 +386,6 @@ export const createGame = (game, user, userGamesLength, myGamesLength) => {
         } else if (myGamesLength = 0) {
             wegames.classList.add('hidden');
         } else {
-            weGamesButton.classList.add('hidden');
             wegames.classList.remove('hidden');
         }
         // console.log(context.length);
