@@ -41,4 +41,4 @@ GamerHub allows gamers to:
 
 
 ## Contact
-For any inquiries or feedback, please contact us at [ezequielvv103@gmail.com].
+For any inquiries or feedback, please contact us at ezequielvv103@gmail.com.
