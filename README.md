@@ -17,15 +17,18 @@ To set up GamerHub locally, follow these steps:
    git clone https://github.com/Radex13/GamerHub.git
 
 2. Navigate to the project directory:
+   ```bash
    cd GamerHub
 
-3. Install dependencies:
+4. Install dependencies:
+   ```bash
    npm install
 
-4. Run the development server:
+6. Run the development server:
+   ```bash
    npm run dev
 
-5. Access GamerHub in your browser at http://localhost:3000.
+8. Access GamerHub in your browser at http://localhost:3000.
 
 ## Usage
 
