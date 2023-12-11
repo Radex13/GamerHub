@@ -14,7 +14,7 @@ To set up GamerHub locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/GamerHub.git
+   git clone https://github.com/Radex13/GamerHub.git
 
 2. Navigate to the project directory:
    cd GamerHub
